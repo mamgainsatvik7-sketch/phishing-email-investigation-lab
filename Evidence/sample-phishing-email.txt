@@ -1,0 +1,20 @@
+From: microsoft-security@micros0ft-support.example
+To: employee@company.example
+Subject: URGENT: Your Microsoft 365 Account Will Be Disabled
+
+Dear Employee,
+
+We detected unusual login activity on your Microsoft 365 account.
+
+Your account access will be suspended within 12 hours unless
+you verify your identity immediately.
+
+Please review your account using the link below:
+
+http://login-micros0ft-support.example/verify
+
+Failure to complete verification may result in permanent
+account suspension.
+
+Regards,
+Microsoft Security Team
