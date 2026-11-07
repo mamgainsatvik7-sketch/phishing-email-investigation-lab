@@ -1,1 +1,38 @@
+SIMULATED PHISHING EMAIL
+
+Classification: Educational Lab Evidence
+Purpose: Phishing Email Investigation
+
+From: Microsoft Security [microsoft-security@micros0ft-support.example](mailto:microsoft-security@micros0ft-support.example)
+
+Subject: Urgent: Verify Your Microsoft Account
+
+Message:
+
+Dear User,
+
+We detected unusual activity associated with your Microsoft account.
+
+To prevent temporary account restrictions, please verify your account immediately using the link below:
+
+http://login-micros0ft-support.example/verify
+
+Failure to complete verification may result in restricted account access.
+
+Regards,
+Microsoft Security Team
+
+INVESTIGATION NOTES:
+
+1. The sender uses a domain that imitates Microsoft's identity.
+2. The word "Microsoft" contains a zero substitution in "micros0ft".
+3. The URL uses a suspicious-looking domain.
+4. The message uses urgency and threatens account restrictions.
+5. The URL uses HTTP rather than HTTPS.
+
+IMPORTANT:
+
+This is a simulated phishing sample created for educational purposes.
+
+The .example domain is reserved for documentation and testing. This sample does not represent a live phishing campaign.
 
