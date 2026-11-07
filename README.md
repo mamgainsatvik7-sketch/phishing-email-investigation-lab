@@ -1,52 +1,35 @@
 # Phishing Email Investigation Lab
 
-### SOC Analyst L1 | Cybersecurity Portfolio Project
-
 ## Project Overview
 
-This project demonstrates a structured phishing email investigation workflow from the perspective of a Level 1 Security Operations Center (SOC) Analyst.
+This project demonstrates a structured Level 1 Security Operations Center (SOC) investigation of a simulated phishing email.
 
-The investigation focuses on identifying phishing indicators, examining email authentication results, analyzing suspicious URLs, investigating domain characteristics and documenting findings in an incident report.
+The investigation focuses on identifying email spoofing indicators, examining email authentication results, analysing URL and IP reputation, reviewing infrastructure information, and documenting findings in an incident report.
 
-The project combines simulated phishing evidence with practical security investigation techniques.
+The objective is to demonstrate practical phishing investigation techniques used by entry-level SOC analysts.
 
-## Objectives
+## Investigation Objectives
 
-* Identify common phishing indicators.
-* Investigate suspicious sender addresses and domains.
-* Understand SPF, DKIM and DMARC authentication.
-* Analyze suspicious URLs using VirusTotal.
-* Examine IP addresses, ASN information and network ownership.
-* Document investigation findings.
-* Develop an L1 SOC phishing investigation playbook.
+* Identify suspicious sender addresses and brand impersonation.
+* Examine email headers and authentication results.
+* Understand SPF, DKIM, and DMARC failures.
+* Investigate suspicious URLs and domains.
+* Review IP reputation using VirusTotal.
+* Examine IP infrastructure and ASN information.
+* Document findings and recommend appropriate security actions.
 
 ## Tools Used
 
-| Tool                 | Purpose                                   |
-| -------------------- | ----------------------------------------- |
-| VirusTotal           | URL and domain reputation analysis        |
-| Google Admin Toolbox | Email header analysis                     |
-| GitHub               | Investigation documentation and portfolio |
-| Web Browser          | Manual security investigation             |
-
-## Investigation Workflow
-
-The investigation followed these stages:
-
-1. **Email Analysis:** Examined sender identity, suspicious wording and phishing indicators.
-2. **Email Authentication:** Reviewed SPF, DKIM and DMARC results.
-3. **URL Investigation:** Examined suspicious URL characteristics and reputation.
-4. **Domain Investigation:** Reviewed domain characteristics and available infrastructure information.
-5. **Threat Assessment:** Evaluated findings and documented investigation limitations.
-6. **Incident Reporting:** Prepared a structured incident investigation report.
-7. **Playbook Development:** Documented a repeatable phishing investigation procedure.
+| Tool                               | Purpose                                          |
+| ---------------------------------- | ------------------------------------------------ |
+| Google Admin Toolbox Messageheader | Email header analysis                            |
+| VirusTotal                         | IP, URL, and domain reputation analysis          |
+| GitHub                             | Investigation documentation and evidence storage |
 
 ## Repository Structure
 
 ```text
 phishing-email-investigation-lab/
-│
-├── README.md
 │
 ├── Evidence/
 │   └── sample-phishing-email.txt
@@ -59,81 +42,146 @@ phishing-email-investigation-lab/
 │   └── phishing-incident-report.md
 │
 ├── Screenshots/
-│   └── README.md
+│   ├── README.md
+│   ├── 01-email-header-analysis.png
+│   ├── 02-virustotal-ip-detection.png
+│   └── 03-ip-infrastructure-analysis.png
 │
-└── Playbooks/
-    └── phishing-investigation-playbook.md
+├── Playbooks/
+│   └── phishing-investigation-playbook.md
+│
+└── README.md
 ```
 
-## Key Investigation Findings
+## Investigation Workflow
 
-The investigation documented the following phishing characteristics:
+### 1. Email Examination
 
-* Brand impersonation.
-* Suspicious sender identity.
-* Character substitution in domain naming.
-* Urgency-based social engineering.
-* SPF authentication failure in the examined header-analysis output.
-* Suspicious URL characteristics.
-* IP address and ASN infrastructure observations.
+Reviewed a simulated email impersonating Microsoft Security.
 
-### Infrastructure Observation
+Indicators examined:
 
-One separately observed network indicator:
+* Suspicious sender address.
+* Brand-name impersonation.
+* Suspicious URL structure.
+* Urgent account-verification language.
+* Email authentication results.
 
-| Attribute    | Value          |
-| ------------ | -------------- |
-| Network      | 2607:f8b0::/32 |
-| ASN          | AS15169        |
-| Organization | Google LLC     |
-| Country      | United States  |
+### 2. Email Header Analysis
 
-This infrastructure observation was documented separately and was not attributed to the simulated phishing domain without verified correlation.
+Used Google Admin Toolbox Messageheader to examine the simulated email header.
 
-## Incident Assessment
+Authentication results:
 
-**Classification:** Simulated Phishing Investigation
+| Authentication Mechanism | Result |
+| ------------------------ | ------ |
+| SPF                      | FAIL   |
+| DKIM                     | NONE   |
+| DMARC                    | FAIL   |
 
-The investigation demonstrated common phishing characteristics and practical investigation techniques.
+These results indicate that the simulated message failed the examined authentication checks.
 
-No confirmed credential theft, account compromise, malware execution or live malicious infrastructure was established.
+### 3. URL and Domain Analysis
 
-## Analyst Skills Demonstrated
+Examined the suspicious URL and domain characteristics.
 
-* Phishing email investigation.
+Areas of investigation:
+
+* Domain spelling and brand impersonation.
+* URL structure and suspicious paths.
+* Domain reputation.
+* Registration and infrastructure information, where available.
+* Potential indicators requiring further investigation.
+
+The `.example` domain used in the simulated email is reserved for documentation and testing. It is not a real phishing domain.
+
+### 4. IP Reputation Analysis
+
+Used VirusTotal to examine the separately observed IP address:
+
+`172.217.215.138`
+
+Reviewed vendor detection results and reputation information.
+
+The observed results included clean classifications from multiple security vendors.
+
+A clean result does not establish that an IP address is universally safe. Reputation results must be interpreted alongside other investigation evidence.
+
+### 5. IP Infrastructure Analysis
+
+Reviewed the IP's infrastructure information, including:
+
+* Network range.
+* Autonomous System Number (ASN).
+* Network owner.
+* Geographic information.
+
+The observed infrastructure was associated with Google LLC and ASN 15169.
+
+**Important:** This IP infrastructure observation is separate from the simulated phishing domain. No evidence establishes that this IP hosted or operated the simulated phishing domain.
+
+## Investigation Evidence
+
+### Email Header Analysis
+
+![Email Header Analysis](Screenshots/01-email-header-analysis.png)
+
+### VirusTotal IP Detection
+
+![VirusTotal IP Detection](Screenshots/02-virustotal-ip-detection.png)
+
+### IP Infrastructure Analysis
+
+![IP Infrastructure Analysis](Screenshots/03-ip-infrastructure-analysis.png)
+
+## Key Findings
+
+1. The simulated email contained indicators consistent with brand impersonation.
+2. The simulated email failed SPF and DMARC authentication checks.
+3. DKIM authentication was not present in the analysed sample.
+4. The URL and domain were examined for suspicious characteristics.
+5. The separately investigated IP showed Google-associated infrastructure.
+6. The available evidence does not establish a real phishing campaign or a compromised system.
+
+## Recommended SOC Analyst Actions
+
+If investigating a similar real-world alert:
+
+1. Preserve the original email and complete headers.
+2. Validate sender identity and authentication results.
+3. Analyse suspicious URLs without opening them directly.
+4. Check domain and IP reputation using trusted threat-intelligence sources.
+5. Investigate redirects, related domains, and other indicators.
+6. Search SIEM logs for interactions with suspicious URLs or domains.
+7. Determine whether users clicked the link or submitted credentials.
+8. Escalate confirmed malicious activity according to the incident-response procedure.
+9. Document findings and recommend containment actions where necessary.
+
+## Skills Demonstrated
+
+* Phishing email identification.
 * Email header analysis.
-* SPF, DKIM and DMARC fundamentals.
-* URL investigation.
-* Domain analysis.
-* IP and ASN examination.
-* Threat intelligence fundamentals.
-* Incident documentation.
-* SOC investigation workflow development.
+* SPF, DKIM, and DMARC interpretation.
+* URL and domain investigation.
+* VirusTotal threat-intelligence analysis.
+* IP reputation and infrastructure analysis.
+* Security evidence documentation.
+* Incident reporting.
+* SOC Level 1 investigation workflow.
 
-## Limitations
+## Limitations and Disclaimer
 
-This is an educational portfolio project.
+This is an educational portfolio project using simulated phishing email evidence.
 
-The phishing email uses a reserved `.example` domain for simulation. It does not represent an operational phishing website.
+The `.example` domain is reserved for documentation and testing. The email authentication results are associated with a constructed sample and should not be interpreted as evidence from a real phishing campaign.
 
-Infrastructure observations are documented separately and should not be interpreted as proof of malicious activity.
+The IP investigation is a separate infrastructure observation and is not attributed to the simulated phishing domain.
 
-## Project Status
+No actual compromise, credential theft, or malicious campaign is claimed.
 
-| Component               | Status    |
-| ----------------------- | --------- |
-| Phishing Email Evidence | Completed |
-| URL Analysis            | Completed |
-| Domain Analysis         | Completed |
-| Incident Report         | Completed |
-| Investigation Playbook  | Completed |
-| Screenshots             | Pending   |
-| Documentation           | Completed |
+## Conclusion
 
-## Author
+This project demonstrates a structured phishing investigation workflow, from initial email examination and authentication analysis to threat-intelligence review and incident documentation.
 
-**Satvik Mamgain**
+It highlights the importance of correlating multiple indicators rather than relying on a single reputation result or authentication failure to determine whether an email is malicious.
 
-Aspiring SOC Analyst | Cybersecurity Enthusiast
-
-GitHub: [@mamgainsatvik7-sketch](https://github.com/mamgainsatvik7-sketch)
